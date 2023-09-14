@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# WinForms Layout Control - Display UI controls in a tabbed group header
+# WinForms Layout Control - Display UI controls in tabbed group headers
 
 This example creates a custom layout control (`MyLayoutControl`) and draws UI controls (a check box, progress bar, hyperlink, button) within the tabbed group header:
 
