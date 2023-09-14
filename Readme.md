@@ -3,8 +3,15 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E2811)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
+
+# WinForms Layout Control - Display UI controls in a tabbed group header
+
+This example creates a custom layout control (`MyLayoutControl`) and draws UI controls (a check box, progress bar, hyperlink, button) within the tabbed group header:
+
+![WinForms Layout Control - Display UI controls in a tabbed group header](https://raw.githubusercontent.com/DevExpress-Examples/how-to-place-controls-in-a-layoutcontrols-tabbed-group-header-e2811/13.1.4%2B/media/winforms-layout-control-tabbed-group.png)
+
+
+## Files to Review
 
 * [Form1.cs](./CS/Form1.cs) (VB: [Form1.vb](./VB/Form1.vb))
 * [DrawEditorHelper.cs](./CS/MyLayoutControl/DrawEditorHelper.cs) (VB: [DrawEditorHelper.vb](./VB/MyLayoutControl/DrawEditorHelper.vb))
@@ -13,14 +20,3 @@
 * [MyLayoutControlImplementor.cs](./CS/MyLayoutControl/MyLayoutControlImplementor.cs) (VB: [MyLayoutControlImplementor.vb](./VB/MyLayoutControl/MyLayoutControlImplementor.vb))
 * [MyLayoutSkinPaintStyle.cs](./CS/MyLayoutControl/MyLayoutSkinPaintStyle.cs) (VB: [MyLayoutSkinPaintStyle.vb](./VB/MyLayoutControl/MyLayoutSkinPaintStyle.vb))
 * [MyTabbedGroupPainter.cs](./CS/MyLayoutControl/MyTabbedGroupPainter.cs) (VB: [MyTabbedGroupPainter.vb](./VB/MyLayoutControl/MyTabbedGroupPainter.vb))
-* [Program.cs](./CS/Program.cs) (VB: [Program.vb](./VB/Program.vb))
-<!-- default file list end -->
-# How to place controls in a LayoutControl's tabbed group header 
-
-
-<p><br />
-By default, it is not possible to place any control within a tabbed group header, because the LayoutControl's layout can be widely customized (groups can be moved and hidden, their direction can be changed). However, you can emulate controls by custom drawing them. This example demonstrates how to draw a CheckBox and ProgressBar in headers.</p>
-
-<br/>
-
-
