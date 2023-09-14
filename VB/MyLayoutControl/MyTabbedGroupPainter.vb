@@ -1,4 +1,4 @@
-﻿' Developer Express Code Central Example:
+' Developer Express Code Central Example:
 ' How to place controls in a LayoutControl's tabbed group header
 ' 
 ' By default, it is not possible to place any control within a tabbed group
@@ -9,28 +9,18 @@
 ' 
 ' You can find sample updates and versions for different programming languages here:
 ' http://www.devexpress.com/example=E2811
-
-Imports System
-Imports System.Collections.Generic
 Imports System.ComponentModel
-Imports System.Data
 Imports System.Drawing
-Imports System.Text
-Imports System.Windows.Forms
 Imports DevExpress.XtraLayout.Registrator
 Imports DevExpress.XtraLayout
-Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraLayout.Painting
 Imports DevExpress.XtraLayout.ViewInfo
 Imports DevExpress.Utils.Drawing
-Imports DevExpress.Skins
-Imports DevExpress.Utils
 Imports DevExpress.XtraEditors.Drawing
-Imports DevExpress.XtraEditors.ViewInfo
-Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraTab.ViewInfo
 
 Namespace WindowsApplication1
+
     Public Class MyTabbedGroupPainter
         Inherits TabbedGroupPainter
 
@@ -39,7 +29,6 @@ Namespace WindowsApplication1
         End Sub
 
         Private _Lc As MyLayoutControl
-
 
         Public Overrides Sub DrawObject(ByVal e As ObjectInfoArgs)
             MyBase.DrawObject(e)
@@ -50,19 +39,18 @@ Namespace WindowsApplication1
             bounds.Width += bounds.X
             bounds.X = 0
             If _Lc.TabGroupItems.ContainsKey(vi.Owner) Then
-                Dim infos() As InplaceEditorInfo = _Lc.TabGroupItems(vi.Owner)
+                Dim infos As InplaceEditorInfo() = _Lc.TabGroupItems(vi.Owner)
                 For Each info As InplaceEditorInfo In infos
                     Dim checkBounds As Rectangle = GetItemBounds(vi.BoundsRelativeToControl, info.ItemSize, info.RightIndent)
                     info.Bounds = checkBounds
-                    If bounds.IntersectsWith(info.Bounds) Then
-                        Return
-                    End If
-                    DrawEditorHelper.DrawEdit(e.Graphics, info.Edit, info.Bounds, info.EditValue)
-                Next info
+                    If bounds.IntersectsWith(info.Bounds) Then Return
+                    DrawEdit(e.Graphics, info.Edit, info.Bounds, info.EditValue)
+                Next
             End If
         End Sub
+
         Private Function GetItemBounds(ByVal boundsRelativeToControl As Rectangle, ByVal size As Size, ByVal rightIndent As Integer) As Rectangle
-            Dim indent As Integer= 3
+            Dim indent As Integer = 3
             Dim result As Rectangle = boundsRelativeToControl
             result.X = boundsRelativeToControl.Right - size.Width - indent - rightIndent
             result.Y += indent
@@ -70,6 +58,5 @@ Namespace WindowsApplication1
             result.Height = size.Height
             Return result
         End Function
-
     End Class
 End Namespace

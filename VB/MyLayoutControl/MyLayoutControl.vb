@@ -1,4 +1,4 @@
-﻿' Developer Express Code Central Example:
+' Developer Express Code Central Example:
 ' How to place controls in a LayoutControl's tabbed group header
 ' 
 ' By default, it is not possible to place any control within a tabbed group
@@ -9,39 +9,34 @@
 ' 
 ' You can find sample updates and versions for different programming languages here:
 ' http://www.devexpress.com/example=E2811
-
-Imports System
 Imports System.Collections.Generic
 Imports System.ComponentModel
-Imports System.Data
 Imports System.Drawing
-Imports System.Text
 Imports System.Windows.Forms
 Imports DevExpress.XtraLayout.Registrator
 Imports DevExpress.XtraLayout
-Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraLayout.Painting
 Imports DevExpress.XtraLayout.ViewInfo
 Imports DevExpress.Utils.Drawing
-Imports DevExpress.Skins
-Imports DevExpress.XtraEditors.Repository
+Imports System.Runtime.InteropServices
 
 Namespace WindowsApplication1
-    <System.ComponentModel.DesignerCategory("")> _
+
+    <System.ComponentModel.DesignerCategory("")>
     Public Class MyLayoutControl
         Inherits LayoutControl
 
-        Private _GroupItems As New Dictionary(Of TabbedGroup, InplaceEditorInfo())()
+        Private _GroupItems As Dictionary(Of TabbedGroup, InplaceEditorInfo()) = New Dictionary(Of TabbedGroup, InplaceEditorInfo())()
 
-        Public Property TabGroupItems() As Dictionary(Of TabbedGroup, InplaceEditorInfo())
+        Public Property TabGroupItems As Dictionary(Of TabbedGroup, InplaceEditorInfo())
             Get
                 Return _GroupItems
             End Get
+
             Set(ByVal value As Dictionary(Of TabbedGroup, InplaceEditorInfo()))
                 _GroupItems = value
             End Set
         End Property
-
 
         Protected Overrides Function CreateILayoutControlImplementorCore() As LayoutControlImplementor
             Return New MyLayoutControlImplementor(Me)
@@ -51,7 +46,8 @@ Namespace WindowsApplication1
             MyBase.OnMouseDown(e)
             CheckCustomEditorsClick(e)
         End Sub
-        Private Function FindEditorInfo(ByVal location As Point, ByRef key As TabbedGroup, ByRef resultInfo As InplaceEditorInfo) As Boolean
+
+        Private Function FindEditorInfo(ByVal location As Point, <Out> ByRef key As TabbedGroup, <Out> ByRef resultInfo As InplaceEditorInfo) As Boolean
             key = Nothing
             resultInfo = Nothing
             For Each pair As KeyValuePair(Of TabbedGroup, InplaceEditorInfo()) In TabGroupItems
@@ -61,17 +57,18 @@ Namespace WindowsApplication1
                         resultInfo = info
                         Return True
                     End If
-                Next info
-            Next pair
+                Next
+            Next
+
             Return False
         End Function
+
         Private Sub CheckCustomEditorsClick(ByVal e As MouseEventArgs)
-            Dim key As TabbedGroup = Nothing
-            Dim resultInfo As InplaceEditorInfo = Nothing
-            If FindEditorInfo(e.Location, key, resultInfo) Then
-                OnEditorClick(key, resultInfo)
-            End If
+            Dim key As TabbedGroup
+            Dim resultInfo As InplaceEditorInfo
+            If FindEditorInfo(e.Location, key, resultInfo) Then OnEditorClick(key, resultInfo)
         End Sub
+
         Private Sub OnEditorClick(ByVal group As TabbedGroup, ByVal info As InplaceEditorInfo)
             info.RaiseMouseDown()
             Refresh()

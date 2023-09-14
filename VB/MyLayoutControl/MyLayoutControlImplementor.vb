@@ -1,4 +1,4 @@
-﻿' Developer Express Code Central Example:
+' Developer Express Code Central Example:
 ' How to place controls in a LayoutControl's tabbed group header
 ' 
 ' By default, it is not possible to place any control within a tabbed group
@@ -9,29 +9,24 @@
 ' 
 ' You can find sample updates and versions for different programming languages here:
 ' http://www.devexpress.com/example=E2811
-
-Imports System
-Imports System.Collections.Generic
 Imports System.ComponentModel
-Imports System.Data
 Imports System.Drawing
-Imports System.Text
-Imports System.Windows.Forms
 Imports DevExpress.XtraLayout.Registrator
 Imports DevExpress.XtraLayout
 Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraLayout.Painting
 Imports DevExpress.XtraLayout.ViewInfo
 Imports DevExpress.Utils.Drawing
-Imports DevExpress.Skins
 
 Namespace WindowsApplication1
+
     Public Class MyLayoutControlImplementor
         Inherits LayoutControlImplementor
 
         Public Sub New(ByVal owner As ILayoutControlOwner)
             MyBase.New(owner)
         End Sub
+
         Protected Overrides Sub InitializePaintStyles()
             Dim lookAndFeelOwner As ISupportLookAndFeel = owner.GetISupportLookAndFeel()
             If lookAndFeelOwner IsNot Nothing Then
@@ -42,6 +37,7 @@ Namespace WindowsApplication1
                 PaintStyles.Add(New UltraFlatPaintStyle(lookAndFeelOwner))
                 PaintStyles.Add(New FlatPaintStyle(lookAndFeelOwner))
             End If
+
             lookAndFeelOwner = Nothing
         End Sub
     End Class
